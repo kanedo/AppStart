@@ -26,31 +26,31 @@ class AppStartServer implements MessageComponentInterface {
 			foreach($this->apps as $app){
 				if(!file_exists($app->file."/Contents/info.plist"))
 				break;
-				echo "Trying to parse ".$app->file."/Contents/info.plist\n";
+				AppStartServer::log("Trying to parse ".$app->file."/Contents/info.plist");
 				try{
 					$parser = new CFPropertyList($app->file."/Contents/info.plist",  CFPropertyList::FORMAT_XML);
 					$plist = $parser->toArray();
 					
 					$icon = $app->file."/Contents/Resources/".$plist['CFBundleIconFile'];
-					echo $icon."\n";
+					AppStartServer::log($icon);
 					if(substr($icon, -5) != ".icns"){
-						echo "added icns extension...\n";
+						AppStartServer::log("added icns extension...");
 						$icon = $icon.".icns";
 					}
 					$ext = pathinfo($plist['CFBundleIconFile'], PATHINFO_EXTENSION);
 					$icon_name = str_replace(".".$ext, '', $plist['CFBundleIconFile']);
 					$out = "tmp";
-					echo "Generating Icon for {$app->name}...\n";
-					echo "Icon file presumed under {$icon} \n";
+					AppStartServer::log("Generating Icon for {$app->name}...");
+					AppStartServer::log("Icon file presumed under {$icon}");
 					if(!file_exists("tmp/".$icon_name.".png")){
 						exec("sips --resampleHeightWidthMax 256 -s format png {$icon} --out {$out}");
 					}else{
-						echo "Icon {$icon_name} already exists, skipping \n";
+						AppStartServer::log("Icon {$icon_name} already exists, skipping");
 					}
 					$icon_file = @file_get_contents("tmp/".$icon_name.".png");
 					$this->apps[$i]->icon = ($icon != NULL) ? base64_encode($icon_file) : false;
 				}catch(Exception $e){
-					echo "UhOhUh something went wrong...\n{$e->getMessage()}\n";
+					AppStartServer::log("UhOhUh something went wrong...\n{$e->getMessage()}");
 					$this->apps[$i]->icon = false;
 				}
 				$i++;
@@ -89,7 +89,7 @@ class AppStartServer implements MessageComponentInterface {
 		}
 		
 		private function refresh(){
-			echo "Send refreshed data...\n";
+			AppStartServer::log("Send refreshed data...");
 			$this->loadConfig();
 			foreach($this->clients as $conn){
 				$this->sendApps($conn);
@@ -97,10 +97,10 @@ class AppStartServer implements MessageComponentInterface {
 		}
 		
 		private function startApp($name){
-			echo "START {$name} NOW...\n";
+			AppStartServer::log("START {$name} NOW...");
 			$app = $this->getApp($name);
 			$cmd = "{$app->cmd} {$app->file}";
-			echo $cmd."\n";
+			AppStartServer::log($cmd);
 			exec($cmd);
 		}
 		
@@ -151,13 +151,13 @@ class AppStartServer implements MessageComponentInterface {
 				default:
 				return false;
 			}
-			echo $log."\n";
+			AppStartServer::log($log);
 			exec("./src/mediakeys.py {$cmd} &");
 		}
 
 	    public function onOpen(ConnectionInterface $conn) {
 	        // Store the new connection to send messages to later
-			echo "New Connection is comming in...\n";
+			AppStartServer::log("New Connection is comming in...");
 	        $this->clients->attach($conn);
 			$this->sendApps($conn);
 	    }
@@ -167,19 +167,19 @@ class AppStartServer implements MessageComponentInterface {
 				if($this->isValidCmd($dec_message)){
 						$this->parseCmd($dec_message);
 				}else{
-					echo "Attempt to start unknown app. Aborted...\n";
+					AppStartServer::log("Attempt to start unknown app. Aborted...");
 				}
 			}
 	    }
 
 	    public function onClose(ConnectionInterface $conn) {
 	        // The connection is closed, remove it, as we can no longer send it messages
-			echo "Connection was closed...\n";
+			AppStartServer::log("Connection was closed...");
 	        $this->clients->detach($conn);
 	    }
 
 	    public function onError(ConnectionInterface $conn, \Exception $e) {
-	        echo "An error has occurred: {$e->getMessage()}\n";
+	        AppStartServer::log("An error has occurred: {$e->getMessage()}");
 
 	        $conn->close();
 	    }
@@ -201,6 +201,11 @@ class AppStartServer implements MessageComponentInterface {
 				$msg['apps'][] = array('name' => $app->name, 'icon' => $app->icon);
 			}
 			$conn->send(json_encode($msg));
+		}
+		
+		public static function log($message){
+			date_default_timezone_set('Europe/Berlin');
+			echo "[".date("Y-m-d H:i:s")."] ".$message."\n";
 		}
 }
 ?>
