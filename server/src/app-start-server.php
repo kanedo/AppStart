@@ -67,6 +67,8 @@ class AppStartServer implements MessageComponentInterface {
 				break;
 				case 'mediacontrol':
 					return true;
+				case 'sleep':
+					return true;
 				default:
 				return false;
 			}
@@ -82,6 +84,8 @@ class AppStartServer implements MessageComponentInterface {
 				break;
 				case 'mediacontrol':
 					$this->mediaKeys($message->key);
+				case 'sleep':
+					$this->sleepMac();
 				default:
 				return false;
 			}
@@ -94,6 +98,11 @@ class AppStartServer implements MessageComponentInterface {
 			foreach($this->clients as $conn){
 				$this->sendApps($conn);
 			}
+		}
+		
+		private function sleepMac(){
+			AppStartServer::log("Send Mac to sleep...");
+			exec("osascript -e 'tell the application \"Finder\" to sleep'");
 		}
 		
 		private function startApp($name){

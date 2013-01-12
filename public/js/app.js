@@ -173,6 +173,17 @@ jQuery(document).ready(function(){
 		console.log(command);
 		conn.send(JSON.stringify(command));
 		return false;
+	});
+	$("#sleep").click(function(){
+		var c = confirm('Are you sure to send your Mac to sleep?');
+		if(c){
+			var command = {
+				cmd: 'sleep',
+			}
+			
+			conn.send(JSON.stringify(command));
+		}
+		return false;
 	})
 })
 
