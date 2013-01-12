@@ -35,6 +35,9 @@ Grundlegend ist es ein Array von Objekten mit folgenden Eigenschaften:
 
 Das Icon wird aus dem App-Bundle generiert.
 
+###Tmp Ordner
+Da die Anwendungsicons nicht jedes mal von neuem generiert werden sollen, werde diese in `./server/tmp` gecached. Dazu muss dieser Ordner existieren und von PHP beschreibbar sein.
+
 ##Usage
 Bashscript starten, WebApp auf dem iPad aufrufen. Steuern.
 
