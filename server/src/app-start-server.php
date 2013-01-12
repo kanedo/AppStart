@@ -15,8 +15,8 @@ class AppStartServer implements MessageComponentInterface {
 			$this->loadConfig();
 	    }
 		
-		private function loadConfig($file = "./apps.json"){
-			$app_json = file_get_contents("./apps.json");
+		private function loadConfig($file = "/apps.json"){
+			$app_json = file_get_contents(__DIR__."/../apps.json");
 			$this->apps = json_decode($app_json);
 			$this->createIcons();
 		}

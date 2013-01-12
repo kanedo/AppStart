@@ -59,3 +59,15 @@ Zur Steuerung von Play/Pause, Next Track, Prev Track etc. wird [mediakeys.py](ht
 
 ###WebApp Icon
 Das Icon der Webapp kommt von [CE0311](http://ce0311.deviantart.com/art/Aluminium-MacBook-Pro-OSX-106036633)
+
+##Screenshots
+![iPad](./screenshots/screenshot-ipad.png "iPad")  
+iPad Webapp. Dafür wurde die Software entwickelt.  
+![iPhone](./screenshots/screenshot-iphone.png "iPhone")  
+Abfallprodukt ist, dass die Software auch auf dem iPhone funktioniert. 
+
+##Fehler/Bugs/Verbesserungen
+Wer etwas anzumerken hat, der schreibe doch bitte ein [github issue](https://github.com/kanedo/AppStart/issues) und wer es schnell gefixed wissen möchte und programmieren kann, der sendet mir bitte einen Pull-Request ;-) Das wäre ganz herzig!
+
+##Known issues
+Die Mediatasten funktionieren leider nur bei iTunes zuverlässig. Bei Spotify und anderen Musikanwendungen funktioniert aber in der Regel Play/Pause. Es ist oft hilfreich, dass Programm vorher noch einmal nach vorn zu holen, damit es sich die Mediakeys "schnappt". Das schafft man durch erneutes "starten" der App.
