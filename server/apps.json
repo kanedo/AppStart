@@ -1,0 +1,27 @@
+[
+	{
+		"name" : "XBMC",
+		"file" : "\/Applications\/XBMC.app",
+		"cmd" : "open"
+	},
+	{
+		"name" : "shutdown",
+		"file" : "\/Applications\/shutdown.app",
+		"cmd" : "open"
+	},
+	{
+		"name" : "iTunes",
+		"file" : "\/Applications\/iTunes.app",
+		"cmd" : "open"
+	},
+	{
+		"name" : "VLC",
+		"file" : "\/Applications\/VLC.app",
+		"cmd" : "open"
+	},
+	{
+		"name" : "Spotify",
+		"file" : "\/Applications\/Spotify.app",
+		"cmd" : "open"
+	}
+]

@@ -1,0 +1,9 @@
+{
+    "require": {
+        "cboden/Ratchet": "0.2.*",
+		"rodneyrehm/plist": "dev-master"
+    },
+	"autoload": {
+	        "psr-0": {"Kanedo": "src/"}
+	}
+}
