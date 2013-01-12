@@ -1,0 +1,11 @@
+CACHE MANIFEST
+CACHE:
+./index.html
+./css/style.css
+./css/bootstrap.min.css
+./img/icon.icns
+./img/default-app.png
+./img/glyphicons-halflings.png
+./js/app.js
+./js/jquery-latest.js
+./js/bootstrap.min.js
