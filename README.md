@@ -61,9 +61,9 @@ Zur Steuerung von Play/Pause, Next Track, Prev Track etc. wird [mediakeys.py](ht
 Das Icon der Webapp kommt von [CE0311](http://ce0311.deviantart.com/art/Aluminium-MacBook-Pro-OSX-106036633)
 
 ##Screenshots
-![iPad](./screenshots/screenshot-ipad.png "iPad")  
+![iPad](https://github.com/kanedo/AppStart/blob/master/screenshots/screenshot-ipad.PNG "iPad")  
 iPad Webapp. Dafür wurde die Software entwickelt.  
-![iPhone](./screenshots/screenshot-iphone.png "iPhone")  
+![iPhone](https://github.com/kanedo/AppStart/blob/master/screenshots/screenshot-iphone.PNG "iPhone")  
 Abfallprodukt ist, dass die Software auch auf dem iPhone funktioniert. 
 
 ##Fehler/Bugs/Verbesserungen
