@@ -53,3 +53,6 @@ Zur Steuerung von Play/Pause, Next Track, Prev Track etc. wird [mediakeys.py](ht
 [Ratchet](http://socketo.me) ist eine Library die mir die Arbeit abnimmt einen Server zu implementieren, der sich um die Websocket-Verbindungen kümmert.
 ###Bootstrap
 [Bootstrap](http://twitter.github.com/bootstrap/) von Twitter erleichtert mir die UI der Webapp.
+
+###WebApp Icon
+Das Icon der Webapp kommt von [CE0311](http://ce0311.deviantart.com/art/Aluminium-MacBook-Pro-OSX-106036633)
