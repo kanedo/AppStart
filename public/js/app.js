@@ -25,7 +25,7 @@ window.applicationCache.addEventListener('updateready',function(){
 window.applicationCache.addEventListener('obsolete',logEvent,false);
 window.applicationCache.addEventListener('error',logEvent,false);
 jQuery(document).ready(function(){
-	
+	var appstart = new AppStart();
 	function message(e, type){
 		var container = $("#messages");
 		var message = document.createElement('div');

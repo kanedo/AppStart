@@ -203,6 +203,7 @@ class AppStartServer implements MessageComponentInterface {
 		
 		public function sendApps(ConnectionInterface $conn){
 			$msg = array(
+				'cmd' => 'apps',
 				'hash' => $this->hash(),
 				'apps'=> array()
 			);	
