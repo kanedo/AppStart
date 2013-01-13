@@ -64,6 +64,13 @@ function AppStartConnection(host, port, uri){
 	}
 	
 	this.sendMessage = function(message){
-		return this.conn.send(JSON.stringify(message));
+		if(this.isConnected()){
+			return this.conn.send(JSON.stringify(message));
+		}
+		throw new AppStartConnectionException('not_connected');
+	}
+	
+	this.isConnected = function(){
+		return (this.conn.readyState == 1);
 	}
 }

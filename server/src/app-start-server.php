@@ -84,8 +84,10 @@ class AppStartServer implements MessageComponentInterface {
 				break;
 				case 'mediacontrol':
 					$this->mediaKeys($message->key);
+				break;
 				case 'sleep':
 					$this->sleepMac();
+				break;
 				default:
 				return false;
 			}
