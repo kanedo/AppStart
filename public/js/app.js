@@ -4,7 +4,7 @@ var uri = "/";
 
 function logEvent(event) {
 	console.log(event.type);
-     // (event.type);
+    // alert(event.type);
 }
 function supports_html5_storage() {
   try {

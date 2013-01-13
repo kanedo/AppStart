@@ -3,7 +3,7 @@ CACHE:
 ./index.html
 ./css/style.css
 ./css/bootstrap.min.css
-./img/icon.icns
+./img/icon.png
 ./img/default-app.png
 ./img/glyphicons-halflings.png
 ./js/app.js
