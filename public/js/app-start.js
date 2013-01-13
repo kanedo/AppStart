@@ -8,7 +8,9 @@ function AppStart(){
 	var methods = {
 		error_codes : function(code){
 			codes = {
-				'not_connected' : 'Sorry, can\'t connect to server...'
+				'not_connected' : 'Sorry, can\'t connect to server...',
+				'already_connected' : 'Connection is up and running...',
+				'connected' : 'Connection established...',
 			};
 			var m = codes[code];
 			return(m == undefined)? code : m;
@@ -88,7 +90,7 @@ function AppStart(){
 		},
 		retryConnect : function(){
 			if(self.conn.isConnected()){
-				self.message('Already connected');
+				self.message(methods.error_codes('already_connected'), 'success');
 			}else{
 				self.connect();
 			}
@@ -121,28 +123,28 @@ function AppStart(){
 		var message = document.createElement('div');
 		$(message).addClass('alert');
 		if(type !== undefined){
-			$(message).addClass(type);
+			$(message).addClass('alert-'+type);
 		}
 		$(message).html('<button type="button" class="close" data-dismiss="alert">&times;</button><p>'+e+'</p>');
 		$(container).prepend(message);
 	}
 	
 	this.onopen = function(){
-		self.message('connected', 'alert-success');
+		self.message(methods.error_codes('connected'), 'success');
 	}
 	
 	this.onclose = function(){
-		self.message('disconnected' , 'alert-error');
+		self.message(methods.error_codes('not_connected') , 'error');
 	}
 	
-	this.refreshApps = function(data){
+	this.refreshApps = function(data, click){
 		var hash = cache['hash'];
 		if(hash != data.hash){ 
 			cache['hash'] = data.hash;
 			cache['apps'] = JSON.stringify(data.apps);
 			methods.paintAppList(data.apps, $("#apps"));
 			self.message('Update successfull', 'alert-success');
-		}else {
+		}else if(click) {
 			self.message('Nothing to update', 'alert');
 		}
 	}
