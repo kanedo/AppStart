@@ -84,8 +84,10 @@ class AppStartServer implements MessageComponentInterface {
 				break;
 				case 'mediacontrol':
 					$this->mediaKeys($message->key);
+				break;
 				case 'sleep':
 					$this->sleepMac();
+				break;
 				default:
 				return false;
 			}
@@ -203,6 +205,7 @@ class AppStartServer implements MessageComponentInterface {
 		
 		public function sendApps(ConnectionInterface $conn){
 			$msg = array(
+				'cmd' => 'apps',
 				'hash' => $this->hash(),
 				'apps'=> array()
 			);	
