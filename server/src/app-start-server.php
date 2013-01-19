@@ -9,8 +9,9 @@ use CFPropertyList\CFPropertyList;
 class AppStartServer implements MessageComponentInterface {
 	protected $clients;
 	protected $apps;
-
-	    public function __construct() {
+	protected static $log;
+	    public function __construct($log = false) {
+			self::$log = $log;
 	        $this->clients = new \SplObjectStorage;
 			$this->loadConfig();
 	    }
@@ -215,6 +216,9 @@ class AppStartServer implements MessageComponentInterface {
 		}
 		
 		public static function log($message){
+			if(!self::$log){
+				return;
+			}
 			date_default_timezone_set('Europe/Berlin');
 			echo "[".date("Y-m-d H:i:s")."] ".$message."\n";
 		}
