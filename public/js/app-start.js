@@ -1,4 +1,4 @@
-function AppStart(){
+function AppStart(options){
 	var self = this;
 	this.host = 'localhost';
 	this.port = '8080';
@@ -6,6 +6,20 @@ function AppStart(){
 	this.conn = new AppStartConnection(this.host);
 	var cache = localStorage;
 	var methods = {
+		init : function(options){
+			var defaults = {
+				host: window.location.hostname,
+				port: 8080
+			};
+			options = $.extend(defaults,options);
+			cache['port'] = (cache['port'] == undefined || cache['port'] == "")? options.port : cache['port'];
+			cache['host'] = (cache['host'] == undefined || cache['host'] == "")? options.host : cache['host'];
+			var user_host = $("#host").val(cache['host']);
+			var user_port = $("#port").val(cache['port']);
+			self.host = options.host;
+			self.port = options.port;
+			
+		},
 		error_codes : function(code){
 			codes = {
 				'not_connected' : 'Sorry, can\'t connect to server...',
@@ -95,6 +109,25 @@ function AppStart(){
 				self.connect();
 			}
 			return false;
+		},
+		updateConnectionDetails : function(e){
+			var val = $(this).val();
+			var id = $(this).attr('id');
+			
+			var old_val = cache[id];
+			if(old_val != val){
+				cache[id] = val;
+				self[id] = val;
+			}
+			console.log(self);
+			methods.retryConnect();
+		},
+		keypressEvent : function(e){
+			console.log(e);
+			if (e.keycode == 13) {
+			   methods.updateConnectionDetails(e);
+			   return false;    //<---- Add this line
+			}
 		}
 	}
 	this.addCallbacks = function(){
@@ -110,6 +143,11 @@ function AppStart(){
 		$('.control').click(methods.sendMediaKey);
 		$('#sleep').click(methods.sleepMac);
 		$("#retry").click(methods.retryConnect);
+		$("#host").blur(methods.updateConnectionDetails);
+		$("#host").keypress(methods.keypressEvent);
+		$("#port").blur(methods.updateConnectionDetails);
+		$("#port").keypress(methods.keypressEvent);
+		
 	}
 	
 	this.message = function(e, type){
@@ -151,6 +189,8 @@ function AppStart(){
 	this.connect = function(){
 		this.conn.connect();
 	}
+	
+	methods.init(options)
 	methods.paintAppListInit();
 	//set Up the connection
 	this.addCallbacks();

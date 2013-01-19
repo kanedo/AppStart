@@ -25,6 +25,7 @@ window.applicationCache.addEventListener('updateready',function(){
 window.applicationCache.addEventListener('obsolete',logEvent,false);
 window.applicationCache.addEventListener('error',logEvent,false);
 jQuery(document).ready(function(){
+	
 	var appstart = new AppStart();
 })
 
