@@ -5,19 +5,22 @@
 	use Kanedo\AppStartServer;
 	use Ratchet\WebSocket\WsServer;
 	
-	$options = getopt("vh", array("verbose", "help"));
-	$verbose = (array_key_exists("v", $options) || array_key_exists("verbose", $options))? true : false;
+	$options = getopt("vhp:", array("verbose", "help", "port:"));
 	if(array_key_exists("h", $options) || array_key_exists("help", $options)){
 		echo "AppStart Server usage: \n";
+		echo "-p --port configure the port on which the server listens\n";
 		echo "-v --verbose to enable logging \n";
 		echo "-h --help to see this message \n";
 		exit(0);
 	}
+	$verbose = (array_key_exists("v", $options) || array_key_exists("verbose", $options))? true : false;
+	$port = (array_key_exists("p", $options))? (int)$options['p'] : 8080;
+	$port = (array_key_exists("port", $options))? (int)$options['port'] : $port;
 		$server = IoServer::factory(
 		        new WsServer(
 		            new AppStartServer($verbose)
 		        )
-		      , 8080
+		      , $port
 		    );
 
 	    $server->run();
