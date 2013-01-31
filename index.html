@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Appstart by kanedo</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Appstart</h1>
+        <p class="header">Appstarter als Webapp</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/kanedo/AppStart/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/kanedo/AppStart/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/kanedo/AppStart">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/kanedo">kanedo</a></p>
+
+
+      </header>
+      <section>
+        <h1>App Start</h1>
+
+<p>App Start ist eine kleine offline WebApp die mit Hilfe von Websockets und einer Server Komponente Apps auf einem Mac starten und grundlegend steuern kann.</p>
+
+<h2>Installation</h2>
+
+<p>Das Programm ist aufgeteilt in zwei wesentliche Komponenten</p>
+
+<h3>WebApp</h3>
+
+<p>Die Webapp ist zu finden unter <code>./public</code>. Dieser Ordner muss via Web ereichbar sein.</p>
+
+<h3>Server</h3>
+
+<p>Der Server befindet sich in <code>./server</code> und darf <strong>nicht</strong> öffentlich erreichbar sein!
+Die Installation des servers ist relativ simpel. Zunächst installiert man sich <a href="http://getcomposer.org">Composer</a> und navigiert im Terminal nach <code>./server</code>. Dort lassen sich die Abhängigkeiten mittels </p>
+
+<pre><code>composer install
+</code></pre>
+
+<p>installieren.<br>
+Um den Server zu starten gibt es das Bash-Script <code>./server/app-start</code>.</p>
+
+<h2>Konfiguration</h2>
+
+<h3>Apps</h3>
+
+<p>Die erreichbaren Anwendungen werden als JSON in <code>./server/apps.json</code> konfiguriert.<br>
+Das Schema ist wie folgt:</p>
+
+<pre><code>[
+    {
+        "name" : "XBMC",
+        "file" : "\/Applications\/XBMC.app",
+        "cmd" : "open"
+    },
+    ...
+}
+</code></pre>
+
+<p>Grundlegend ist es ein Array von Objekten mit folgenden Eigenschaften:</p>
+
+<ul>
+<li>
+<code>name</code> Angezeigter Name</li>
+<li>
+<code>file</code> Pfad zur Anwendung.</li>
+<li>
+<code>cmd</code> Terminal Command zum starten, in der Regel <code>open</code>
+</li>
+</ul><p>Das Icon wird aus dem App-Bundle generiert.</p>
+
+<h3>Tmp Ordner</h3>
+
+<p>Da die Anwendungsicons nicht jedes mal von neuem generiert werden sollen, werde diese in <code>./server/tmp</code> gecached. Dazu muss dieser Ordner existieren und von PHP beschreibbar sein.</p>
+
+<h2>Usage</h2>
+
+<p>Bashscript starten, WebApp auf dem iPad aufrufen. Steuern.</p>
+
+<h2>Requirements</h2>
+
+<ul>
+<li>PHP &gt;= 5.3</li>
+<li><a href="http://getcomposer.org">Composer</a></li>
+<li>
+<a href="http://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man1/sips.1.html">sips</a> (Standardinstallation seit Mac OS 10.4)</li>
+</ul><h2>Dependencies/Libraries</h2>
+
+<h3>Mediakeys.py</h3>
+
+<p>Zur Steuerung von Play/Pause, Next Track, Prev Track etc. wird <a href="https://gist.github.com/4078034">mediakeys.py</a> von <a href="https://github.com/fredrikw">fredrikw</a> verwendet.</p>
+
+<h3>CFPropertyList</h3>
+
+<p><a href="https://github.com/rodneyrehm/CFPropertyList">CFPropertyList</a> ist eine Library um die Info.plist Dateien der Anwendungen zu parsen von <a href="https://github.com/rodneyrehm">Rodney Rehm</a></p>
+
+<h3>Ratchet</h3>
+
+<p><a href="http://socketo.me">Ratchet</a> ist eine Library die mir die Arbeit abnimmt einen Server zu implementieren, der sich um die Websocket-Verbindungen kümmert.</p>
+
+<h3>Bootstrap</h3>
+
+<p><a href="http://twitter.github.com/bootstrap/">Bootstrap</a> von Twitter erleichtert mir die UI der Webapp.</p>
+
+<h3>WebApp Icon</h3>
+
+<p>Das Icon der Webapp kommt von <a href="http://ce0311.deviantart.com/art/Aluminium-MacBook-Pro-OSX-106036633">CE0311</a></p>
+
+<h2>Screenshots</h2>
+
+<p><img src="https://github.com/kanedo/AppStart/blob/master/screenshots/screenshot-ipad.PNG" alt="iPad" title="iPad"><br>
+iPad Webapp. Dafür wurde die Software entwickelt.<br><img src="https://github.com/kanedo/AppStart/blob/master/screenshots/screenshot-iphone.PNG" alt="iPhone" title="iPhone"><br>
+Abfallprodukt ist, dass die Software auch auf dem iPhone funktioniert. </p>
+
+<h2>Fehler/Bugs/Verbesserungen</h2>
+
+<p>Wer etwas anzumerken hat, der schreibe doch bitte ein <a href="https://github.com/kanedo/AppStart/issues">github issue</a> und wer es schnell gefixed wissen möchte und programmieren kann, der sendet mir bitte einen Pull-Request ;-) Das wäre ganz herzig!</p>
+
+<h2>Known issues</h2>
+
+<p>Die Mediatasten funktionieren leider nur bei iTunes zuverlässig. Bei Spotify und anderen Musikanwendungen funktioniert aber in der Regel Play/Pause. Es ist oft hilfreich, dass Programm vorher noch einmal nach vorn zu holen, damit es sich die Mediakeys "schnappt". Das schafft man durch erneutes "starten" der App.</p>
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+		
+  </body>
+</html>
