@@ -25,8 +25,12 @@ class AppStartServer implements MessageComponentInterface {
 		private function createIcons(){			
 			$i = 0;
 			foreach($this->apps as $app){
-				if(!file_exists($app->file."/Contents/info.plist"))
-				break;
+				if(!file_exists($app->file."/Contents/info.plist")){
+					AppStartServer::log("unset app{$app->name}");
+					unset($this->apps[$i]);
+					$i++;
+					continue;
+				}
 				AppStartServer::log("Trying to parse ".$app->file."/Contents/info.plist");
 				try{
 					$parser = new CFPropertyList($app->file."/Contents/info.plist",  CFPropertyList::FORMAT_XML);
@@ -55,7 +59,8 @@ class AppStartServer implements MessageComponentInterface {
 					$this->apps[$i]->icon = false;
 				}
 				$i++;
-			}			
+			}	
+			$this->apps = array_values($this->apps);		
 		}
 		
 		private function isValidCmd($message){
@@ -209,9 +214,10 @@ class AppStartServer implements MessageComponentInterface {
 				'hash' => $this->hash(),
 				'apps'=> array()
 			);	
-			foreach($this->apps as $app){
+			foreach($this->apps as $app){				
 				$msg['apps'][] = array('name' => $app->name, 'icon' => $app->icon);
 			}
+
 			$conn->send(json_encode($msg));
 		}
 		
