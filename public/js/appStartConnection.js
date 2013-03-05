@@ -37,6 +37,7 @@ function AppStartConnection(host, port, uri){
 	this.onmessage = function(e){
 		console.log('Uh Oh yikes');
 		var data = self.parseMessage(e.data);
+		console.log(data);
 		for(var i = 0; i< self.callbacks.length; i++){
 			if(self.callbacks[i].trigger == data.cmd){
 				self.callbacks[i].method(data);

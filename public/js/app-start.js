@@ -3,22 +3,22 @@ function AppStart(options){
 	this.host = 'localhost';
 	this.port = '8080';
 	this.messages = $("#messages");
-	this.conn = new AppStartConnection(this.host);
+	this.conn 
 	var cache = localStorage;
 	var methods = {
 		init : function(options){
 			var defaults = {
-				host: window.location.hostname,
-				port: 8080
-			};
+				'host': window.location.hostname,
+				'port': '8080',
+			}
 			options = $.extend(defaults,options);
 			cache['port'] = (cache['port'] == undefined || cache['port'] == "")? options.port : cache['port'];
 			cache['host'] = (cache['host'] == undefined || cache['host'] == "")? options.host : cache['host'];
 			var user_host = $("#host").val(cache['host']);
 			var user_port = $("#port").val(cache['port']);
-			self.host = options.host;
-			self.port = options.port;
-			
+			self.host = options.host
+			self.port = options.host
+			self.conn = new AppStartConnection(self.host, self.port);
 		},
 		error_codes : function(code){
 			codes = {
@@ -113,11 +113,15 @@ function AppStart(options){
 		updateConnectionDetails : function(e){
 			var val = $(this).val();
 			var id = $(this).attr('id');
-			
 			var old_val = cache[id];
 			if(old_val != val){
 				cache[id] = val;
-				self[id] = val;
+				if(id == "host"){
+					self.host = val;
+				}
+				if(id == "port"){
+					self.port = val;
+				}
 			}
 			console.log(self);
 			methods.retryConnect();
@@ -176,6 +180,7 @@ function AppStart(options){
 	}
 	
 	this.refreshApps = function(data, click){
+		console.log("refresh apps");
 		var hash = cache['hash'];
 		if(hash != data.hash){ 
 			cache['hash'] = data.hash;
@@ -187,7 +192,10 @@ function AppStart(options){
 		}
 	}
 	this.connect = function(){
+		this.conn.host = self.host;
+		this.conn.port = self.port;
 		this.conn.connect();
+		console.log(this.conn);
 	}
 	
 	methods.init(options)
