@@ -1,2 +1,4 @@
 /server/vendor/
+/server/app-start
 /log/*
+net.kanedo.AppStart.plist
