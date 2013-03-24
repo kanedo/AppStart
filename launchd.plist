@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>net.kanedo.AppStart</string>
+	<key>Program</key>
+	<string>PATH/server/app-start</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>PATH/server/app-start</string>
+	</array>
+	<key>RunAtLoad</key>
+	<false/>
+	<key>KeepAlive</key>
+	<true/>
+	<key>StandardOutPath</key>
+	<string>PATH/log/net.kanedo.AppStart.log</string>
+	<key>StandardErrorPath</key>
+	<string>PATH/log/net.kanedo.AppStart-error.log</string>
+</dict>
+</plist>

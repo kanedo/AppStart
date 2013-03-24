@@ -1,0 +1,24 @@
+#!/usr/bin/php
+<?php
+$php = exec("which php");
+$path = exec("pwd");
+
+/**
+ * Configure Launchd Script
+ **/
+ echo "Write Launchd-Skript ...";
+$launchd = file_get_contents("launchd.plist");
+$parsed_launchd = str_replace("PATH", $path, $launchd);
+file_put_contents("net.kanedo.AppStart.plist",$parsed_launchd);
+echo "done\n";
+/**
+ * Configure Shell Script
+ **/
+ echo "Write Shell-Script...";
+ $appstart = file_get_contents("./server/app-start.sh");
+ $parsed_appstart = str_replace("PHP", $php, $appstart);
+ $parsed_appstart = str_replace("PATH", $path, $parsed_appstart);
+ file_put_contents("./server/app-start", $parsed_appstart);
+ echo "done\n";
+ 
+?>
