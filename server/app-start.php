@@ -32,4 +32,6 @@
     	$server->run();
 	}catch(React\Socket\ConnectionException $e){
 		echo "{$e->getMessage()}\n";
+	}catch(Exception $e){
+		echo $e;
 	}

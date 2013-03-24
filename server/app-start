@@ -1,2 +1,3 @@
 #! /bin/sh
-php ./app-start.php &
+
+/opt/boxen/phpenv/shims/php /Users/kanedo/src/AppStart/server/app-start.php -v 
