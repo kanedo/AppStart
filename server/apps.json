@@ -1,5 +1,11 @@
 [
 	{
+		"name" : "Chrome",
+		"file" : "\/Applications\/Google Chrome.app",
+		"cmd"  : "open",
+		"type" : "application" 
+	},
+	{
 		"name" : "XBMC",
 		"file" : "\/Applications\/XBMC.app",
 		"cmd"  : "open",
@@ -26,6 +32,12 @@
 	{
 		"name" : "Spotify",
 		"file" : "\/Applications\/Spotify.app",
+		"cmd"  : "open",
+		"type" : "application" 
+	},
+	{
+		"name" : "Safari",
+		"file" : "\/Applications\/Safari.app",
 		"cmd"  : "open",
 		"type" : "application" 
 	}
