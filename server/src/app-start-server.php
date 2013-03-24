@@ -26,11 +26,21 @@ class AppStartServer implements MessageComponentInterface {
 			$i = 0;
 			foreach($this->apps as $app){
 				if(!file_exists($app->file."/Contents/info.plist")){
-					AppStartServer::log("unset app{$app->name}");
-					unset($this->apps[$i]);
+					if(!(property_exists($app, "type") && $app->type == "script")){
+						AppStartServer::log("unset app {$app->name}");
+						unset($this->apps[$i]);
+						$i++;
+						continue;
+					}
+				}
+				
+				if(property_exists($app, "type") && $app->type == "script"){
+					AppStartServer::log("App {$app->name} is a script. Use default icon..."); 
+					$this->apps[$i]->icon = "";
 					$i++;
 					continue;
 				}
+				
 				AppStartServer::log("Trying to parse ".$app->file."/Contents/info.plist");
 				try{
 					$parser = new CFPropertyList($app->file."/Contents/info.plist",  CFPropertyList::FORMAT_XML);
@@ -215,7 +225,7 @@ class AppStartServer implements MessageComponentInterface {
 				'apps'=> array(),
 				'cmd' => 'apps'
 			);	
-			foreach($this->apps as $app){				
+			foreach($this->apps as $app){	
 				$msg['apps'][] = array('name' => $app->name, 'icon' => $app->icon);
 			}
 

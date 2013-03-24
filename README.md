@@ -22,7 +22,8 @@ Das Schema ist wie folgt:
 		{
 			"name" : "XBMC",
 			"file" : "\/Applications\/XBMC.app",
-			"cmd" : "open"
+			"cmd"  : "open",
+			"type" : "script" (optional)
 		},
 		...
 	}
@@ -32,6 +33,7 @@ Grundlegend ist es ein Array von Objekten mit folgenden Eigenschaften:
 * `name` Angezeigter Name
 * `file` Pfad zur Anwendung.
 * `cmd` Terminal Command zum starten, in der Regel `open`
+* `type` Typ der Application. Wichtig im Moment nur bei Bash-Scripts die Eigenschaft `script`. In dem Fall wird das default icon "applet.png" verwendet.
 
 Das Icon wird aus dem App-Bundle generiert.
 
