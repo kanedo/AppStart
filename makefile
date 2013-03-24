@@ -1,5 +1,6 @@
 # DON'T EDIT HERE!!!
 all: 
+	cd ./server && composer install
 	./configure
 	
 install:
