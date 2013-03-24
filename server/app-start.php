@@ -1,6 +1,7 @@
 <?php
     require __DIR__ . '/vendor/autoload.php';
 	require __DIR__.'/src/app-start-server.php';
+	define("BASE_DIR", __DIR__);
 	use Ratchet\Server\IoServer;
 	use Kanedo\AppStartServer;
 	use Ratchet\WebSocket\WsServer;

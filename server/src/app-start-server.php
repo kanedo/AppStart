@@ -17,7 +17,7 @@ class AppStartServer implements MessageComponentInterface {
 	    }
 		
 		private function loadConfig($file = "/apps.json"){
-			$app_json = file_get_contents(__DIR__."/../apps.json");
+			$app_json = file_get_contents(BASE_DIR.$file);
 			$this->apps = json_decode($app_json);
 			$this->createIcons();
 		}
@@ -57,12 +57,12 @@ class AppStartServer implements MessageComponentInterface {
 					$out = "tmp";
 					AppStartServer::log("Generating Icon for {$app->name}...");
 					AppStartServer::log("Icon file presumed under {$icon}");
-					if(!file_exists("tmp/".$icon_name.".png")){
+					if(!file_exists(BASE_DIR."/tmp/".$icon_name.".png")){
 						exec("sips --resampleHeightWidthMax 256 -s format png {$icon} --out {$out}");
 					}else{
 						AppStartServer::log("Icon {$icon_name} already exists, skipping");
 					}
-					$icon_file = @file_get_contents("tmp/".$icon_name.".png");
+					$icon_file = @file_get_contents(BASE_DIR."/tmp/".$icon_name.".png");
 					$this->apps[$i]->icon = ($icon != NULL) ? base64_encode($icon_file) : false;
 				}catch(Exception $e){
 					AppStartServer::log("UhOhUh something went wrong...\n{$e->getMessage()}");
