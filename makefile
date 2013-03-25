@@ -5,6 +5,7 @@ all:
 	
 install:
 	chmod +x ./server/app-start
+	chmod +x ./interface
 	cp net.kanedo.AppStart.plist ~/Library/LaunchAgents/net.kanedo.AppStart.plist
 	chmod +x ~/Library/LaunchAgents/net.kanedo.AppStart.plist
 	launchctl load ~/Library/LaunchAgents/net.kanedo.AppStart.plist

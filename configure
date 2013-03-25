@@ -20,5 +20,13 @@ echo "done\n";
  $parsed_appstart = str_replace("PATH", $path, $parsed_appstart);
  file_put_contents("./server/app-start", $parsed_appstart);
  echo "done\n";
- 
+ /**
+  * Configure Public Interface Script
+  **/
+  echo "Write Public Interface Script...";
+  $interface = file_get_contents('interface.sh');
+  $parsed_interface = str_replace("PHP", $php, $interface);
+  $parsed_interface = str_replace("PATH", $path, $parsed_interface);
+  file_get_contents("interface", $parsed_interface);
+  echo "done\n";
 ?>
