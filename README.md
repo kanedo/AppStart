@@ -4,7 +4,8 @@ App Start ist eine kleine offline WebApp die mit Hilfe von Websockets und einer 
 Das Programm ist aufgeteilt in zwei wesentliche Komponenten, `server` und `webapp`.  
 Installation des Programmes mit allen Abhängigkeiten und dem Launch-Deamon erfolgt mittels `make` und `make install`.
 Dafür muss unbedingt [Composer](http://getcomposer.org) installiert sein.
-Den Ordner `./public` muss man per Web erreichbar machen (Bspw über die Mac OS X Freigabe).
+Um die Website auf den mobilen Geräten zu installieren startet man das Script `./interface` das nach dem installationsprozess zur Verfügung steht.  
+Weitere Anweisungen gibt es dann in der Ausgabe des Programmes.
 ##Deinstallation
 Zum deinstallieren müssen der Ordner gelöscht werden und der launchd-service entfernt. Das geht folgendermaßen:
 
