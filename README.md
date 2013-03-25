@@ -1,19 +1,27 @@
 #App Start 
 App Start ist eine kleine offline WebApp die mit Hilfe von Websockets und einer Server Komponente Apps auf einem Mac starten und grundlegend steuern kann.
 ##Installation
-Das Programm ist aufgeteilt in zwei wesentliche Komponenten
-###WebApp
-Die Webapp ist zu finden unter `./public`. Dieser Ordner muss via Web ereichbar sein.
-###Server
-Der Server befindet sich in `./server` und darf **nicht** öffentlich erreichbar sein!
-Die Installation des servers ist relativ simpel. Zunächst installiert man sich [Composer](http://getcomposer.org) und navigiert im Terminal nach `./server`. Dort lassen sich die Abhängigkeiten mittels 
+Das Programm ist aufgeteilt in zwei wesentliche Komponenten, `server` und `webapp`.  
+Installation des Programmes mit allen Abhängigkeiten und dem Launch-Deamon erfolgt mittels `make` und `make install`.
+Dafür muss unbedingt [Composer](http://getcomposer.org) installiert sein.
+Den Ordner `./public` muss man per Web erreichbar machen (Bspw über die Mac OS X Freigabe).
+##Deinstallation
+Zum deinstallieren müssen der Ordner gelöscht werden und der launchd-service entfernt. Das geht folgendermaßen:
 
-	composer install
-	
-installieren.   
-Um den Server zu starten gibt es das Bash-Script `./server/app-start`.
+	launchctl stop net.kanedo.AppStart
+	launchctl unload ~/Library/LaunchAgents/net.kanedo.AppStart.plist
+	rm ~/Library/LaunchAgents/net.kanedo.AppStart.plist
 
 ##Konfiguration
+###Start und Stop des Deamons
+AppStart ist als launchd service eingetragen und startet sich daher beim login automatisch. Sollte es nötig sein das Programm zu stoppen, so öffnet man ein Terminal und gibt folgendes ein:
+
+	launchctl stop net.kanedo.AppStart
+	
+Zum Anschliessenden starten 
+	
+	launchctl start net.kanedo.AppStart
+
 ###Apps
 Die erreichbaren Anwendungen werden als JSON in `./server/apps.json` konfiguriert.  
 Das Schema ist wie folgt:
