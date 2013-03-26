@@ -242,6 +242,7 @@ class AppStartServer implements MessageComponentInterface {
 			}
 			date_default_timezone_set('Europe/Berlin');
 			echo "[".date("Y-m-d H:i:s")."] ".$message."\n";
+			syslog(LOG_ERR, $message);
 		}
 }
 ?>
