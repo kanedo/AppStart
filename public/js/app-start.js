@@ -73,8 +73,14 @@ function AppStart(options){
 				container.empty();
 			}
 			for(var i = 0; i<data.length; i++){
+				if(i%4 == 0){
+					var row = document.createElement('div');
+					row.className = "row-fluid num"+i;	
+					container.append(row);				
+				}
 				var div = methods.paintApp(data[i].name, data[i].icon);
-				container.append(div);
+				$(row).append(div);
+				
 			}
 		},
 		paintAppListInit : function(){

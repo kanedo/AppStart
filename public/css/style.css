@@ -2,40 +2,52 @@
  * Styles
  **/
  html, body {
-             height: 100%;
-         }
-         footer {
-             padding: 17px 0 18px 0;
-             border-top: 1px solid #000;
-         }
-         footer a {
-             color: #999;
-         }
-         footer a:hover {
-             color: #efefef;
-         }
-         .wrapper {
-             min-height: 100%;
-             height: auto !important;
-             height: 100%;
-             margin: 0 auto -63px;
-         }
-         .push {
-             height: 63px;
-         }
-         /* not required for sticky footer; just pushes hero down a bit */
-         .wrapper > .container {
-             padding-top: 60px;
-         }
+     height: 100%;
+ }
+ footer {
+     padding: 17px 0 18px 0;
+     border-top: 1px solid #000;
+ }
+ footer a {
+     color: #999;
+ }
+ footer a:hover {
+     color: #efefef;
+ }
+ .wrapper {
+     min-height: 100%;
+     height: auto !important;
+     height: 100%;
+     margin: 0 auto -63px;
+ }
+ .push {
+     height: 63px;
+ }
+ /* not required for sticky footer; just pushes hero down a bit */
+ .wrapper > .container {
+     padding-top: 60px;
+ }
+ 
+ a.control {
+ height:40px;
+ line-height: 40px;
+ }
+ 
+ a.settings img {
+ width:40px;
+ height: 40px;
+ }
  #apps {
  margin: 10px inherit;
  }
  
+ .row-fluid  #apps .span2 {
+ min-width:128px;
+  }
+ 
  #apps a {
- max-width: 128px;
- max-height: 128px;
+ max-width: 100%;
  display: block;
- margin: 0 auto;
  }
  
  #apps img {
