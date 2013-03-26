@@ -1,7 +1,3 @@
-var host = "localhost";
-var port = "8080";
-var uri = "/";
-
 function logEvent(event) {
 	console.log(event.type);
     // alert(event.type);

@@ -15,7 +15,7 @@ function AppStart(options){
 			cache['port'] = (cache['port'] == undefined || cache['port'] == "")? options.port : cache['port'];
 			cache['host'] = (cache['host'] == undefined || cache['host'] == "")? options.host : cache['host'];
 			var user_host = $("#host").val(cache['host']);
-			var user_port = $("#port").val(cache['port']);
+			var user_port = $("#port").val(options.port);
 			self.host = options.host
 			self.port = options.port
 			self.conn = new AppStartConnection(self.host, self.port);
