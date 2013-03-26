@@ -3,6 +3,22 @@
 $php = exec("which php");
 $path = exec("pwd");
 
+$config = array(
+	'server' 	=> array(
+		'port' => 1821
+	),
+	'interface' => array(
+		'port' => 1822
+	)
+);
+
+/**
+ * Write config.json
+ **/
+ echo "Write config.json...";
+ $config_json = json_encode($config);
+ file_put_contents("./public/config.json", $config_json);
+ echo "done\n";
 /**
  * Configure Launchd Script
  **/
@@ -27,6 +43,7 @@ echo "done\n";
   $interface = file_get_contents('interface.sh');
   $parsed_interface = str_replace("PHP", $php, $interface);
   $parsed_interface = str_replace("PATH", $path, $parsed_interface);
+  $parsed_interface = str_replace("THEPORT", $config['interface']['port'], $parsed_interface);
   file_put_contents("interface", $parsed_interface);
   echo "done\n";
 ?>

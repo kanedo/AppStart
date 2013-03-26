@@ -6,6 +6,7 @@ CACHE MANIFEST
 # Version 0.2.2.<?php echo time()."\n"; ?>
 CACHE:
 ./index.html
+./config.json
 ./css/style.css
 ./css/bootstrap.min.css
 ./css/bootstrap-responsive.css

@@ -17,7 +17,7 @@ function AppStart(options){
 			var user_host = $("#host").val(cache['host']);
 			var user_port = $("#port").val(cache['port']);
 			self.host = options.host
-			self.port = options.host
+			self.port = options.port
 			self.conn = new AppStartConnection(self.host, self.port);
 		},
 		error_codes : function(code){

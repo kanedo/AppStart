@@ -1,5 +1,5 @@
 #!/bin/sh
-PORT=1822
+PORT=THEPORT
 HOST=$(hostname -f)
 echo "AppStart server started"
 echo "You can now reach the interface at $(tput bold)${HOST}:${PORT}$(tput sgr0)"

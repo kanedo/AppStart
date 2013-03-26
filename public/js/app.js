@@ -26,9 +26,11 @@ window.applicationCache.addEventListener('updateready',function(){
 window.applicationCache.addEventListener('obsolete',logEvent,false);
 window.applicationCache.addEventListener('error',logEvent,false);
 jQuery(document).ready(function(){
-	var appstart = new AppStart({
-				'host': window.location.hostname,
-				'port': '8080',
+	$.getJSON('config.json', function(config) {
+		var appstart = new AppStart({
+					'host': window.location.hostname,
+					'port': config.server.port,
+		});
 	});
 })
 

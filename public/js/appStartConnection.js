@@ -1,7 +1,7 @@
 function AppStartConnection(host, port, uri){
 	var self = this;
 	this.host = (host === undefined)?'localhost':host;
-	this.port = '8080';
+	this.port = (port === undefined)?'8080':port;
 	this.uri = '/';
 	
 	this.conn = null;
