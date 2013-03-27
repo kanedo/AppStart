@@ -53,7 +53,7 @@ Da die Anwendungsicons nicht jedes mal von neuem generiert werden sollen, werde 
 Bashscript starten, WebApp auf dem iPad aufrufen. Steuern.
 
 ##Requirements
-* PHP >= 5.3
+* PHP >= 5.4.1
 * [Composer](http://getcomposer.org)
 * [sips](http://developer.apple.com/library/mac/#documentation/Darwin/Reference/ManPages/man1/sips.1.html) (Standardinstallation seit Mac OS 10.4)
 
