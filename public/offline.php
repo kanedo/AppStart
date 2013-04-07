@@ -1,4 +1,8 @@
 <?php
+define("DEVELOP", true);
+if(DEVELOP == true){
+	exit;
+}
 header("Content-Type: text/cache-manifest");
 ?>
 CACHE MANIFEST
