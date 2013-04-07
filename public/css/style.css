@@ -55,23 +55,11 @@
  max-height: 128px;
  }
  
- /*#backward,
- #play,
- #forward {
- height: 48px;
- width: 48px;
- display:inline-block;
+ @media only screen and (max-width: 480px){
+ .btn-group {
+ white-space:normal !important;
  }
- 
- #backward {
- background:url(../img/prev.png) center center;
- background-size:auto;
+	.row-fluid  #apps .span2 img {
+		margin-left: 76px;
+	}
  }
- #forward {
- background:url(../img/next.png) center center;
- background-size:auto;
- }
- #play {
- background:url(../img/play.png) center center;
- background-size:auto;
- } */

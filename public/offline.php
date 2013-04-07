@@ -1,5 +1,5 @@
 <?php
-define("DEVELOP", true);
+define("DEVELOP", false);
 if(DEVELOP == true){
 	exit;
 }
