@@ -12,6 +12,12 @@
 		"type" : "application" 
 	},
 	{
+		"name" : "Instacast",
+		"file" : "\/Applications\/Instacast.app",
+		"cmd"  : "open",
+		"type" : "application" 
+	},
+	{
 		"name" : "shutdown",
 		"file" : "\/Users\/kanedo\/shutdown-server",
 		"cmd"  : "open",
