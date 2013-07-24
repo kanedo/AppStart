@@ -177,7 +177,7 @@ class AppStartServer implements MessageComponentInterface {
 				break;
 				case 'forward':
 					$cmd = "next";
-					$this->spotifyPrevNext("previous");
+					$this->spotifyPrevNext("next");
 					$log = "Next track...";
 				break;
 				case 'volume-up':
