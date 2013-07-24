@@ -155,6 +155,13 @@ class AppStartServer implements MessageComponentInterface {
 			}
 		}
 		
+		private function spotifyPrevNext($cmd){
+			$is_running = "-e 'on is_running(appName)' -e ' tell application \"System Events\" to (name of processes) contains appName' -e 'end is_running'";
+			$cmd_string = "-e 'if is_running(\"Spotify\") then' -e 'tell application \"Spotify\"' -e '{$cmd} track' -e 'end tell' -e 'end if'";
+			
+			exec("osascript {$is_running} {$cmd_string}");
+		}
+		
 		private function mediaKeys($key){
 			$cmd = null;
 			$log = "";
@@ -165,10 +172,12 @@ class AppStartServer implements MessageComponentInterface {
 				break;
 				case 'backward':
 					$cmd = "prev";
+					$this->spotifyPrevNext("previous");
 					$log = "Previous track...";
 				break;
 				case 'forward':
 					$cmd = "next";
+					$this->spotifyPrevNext("previous");
 					$log = "Next track...";
 				break;
 				case 'volume-up':
