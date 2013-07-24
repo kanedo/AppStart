@@ -1,0 +1,24 @@
+on is_running(appName)
+	tell application "System Events" to (name of processes) contains appName
+end is_running
+set appName to false
+set appRunning to false
+set playing to "false"
+if (is_running("Spotify") and not appRunning) then
+	tell application "Spotify"
+		set appRunning to true
+		set theTrack to current track
+		set theArtist to artist of theTrack
+		set theName to name of theTrack
+	end tell
+	set playing to theName & " - " & theArtist
+else if (is_running("iTunes") and not appRunning) then
+	tell application "iTunes"
+		set appRunning to true
+		set theTrack to current track
+		set theArtist to artist of theTrack
+		set theName to name of theTrack
+	end tell
+	set playing to theName & " - " & theArtist
+end if
+playing

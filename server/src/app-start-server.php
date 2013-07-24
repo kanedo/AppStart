@@ -155,6 +155,14 @@ class AppStartServer implements MessageComponentInterface {
 			}
 		}
 		
+		private function getCurrentTrack(){
+			exec("osascript ".BASE_DIR."/src/current_track.scp", $current_track);
+			if(!is_array($current_track) || $current_track[0] == "false"){
+				return false;
+			}
+			return $current_track[0];
+		}
+		
 		private function spotifyPrevNext($cmd){
 			$is_running = "-e 'on is_running(appName)' -e ' tell application \"System Events\" to (name of processes) contains appName' -e 'end is_running'";
 			$cmd_string = "-e 'if is_running(\"Spotify\") then' -e 'tell application \"Spotify\"' -e '{$cmd} track' -e 'end tell' -e 'end if'";
@@ -198,6 +206,8 @@ class AppStartServer implements MessageComponentInterface {
 	    public function onOpen(ConnectionInterface $conn) {
 	        // Store the new connection to send messages to later
 			AppStartServer::log("New Connection is comming in...");
+			AppStartServer::log("get current track...");
+			AppStartServer::log($this->getCurrentTrack());
 	        $this->clients->attach($conn);
 			$this->sendApps($conn);
 	    }
