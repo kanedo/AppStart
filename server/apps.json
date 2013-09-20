@@ -46,5 +46,11 @@
 		"file" : "\/Applications\/Safari.app",
 		"cmd"  : "open",
 		"type" : "application" 
+	},
+	{
+		"name" : "Transmission",
+		"file" : "\/Applications\/Transmission.app",
+		"cmd"  : "open",
+		"type" : "application" 
 	}
 ]
