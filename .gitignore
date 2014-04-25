@@ -1,4 +1,4 @@
-server/apps.json
+/server/apps.json
 /server/vendor/
 /server/app-start
 /log/*
