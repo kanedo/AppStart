@@ -54,18 +54,17 @@ class AppStartServer implements MessageComponentInterface {
 						$icon = $icon.".icns";
 					}
 					$ext = pathinfo($plist['CFBundleIconFile'], PATHINFO_EXTENSION);
-					$icon_name = str_replace(".".$ext, '', $plist['CFBundleIconFile']);
-					$icon_name = str_replace(" ", "\\ ", $icon_name);
+					$icon_name = strtolower(str_replace(array('\\','/',':','*','?','"','<','>','|', ' '),'_',$app->name));
 					$out = "tmp";
 					AppStartServer::log("Generating Icon for {$app->name}...");
 					AppStartServer::log("Icon file presumed under {$icon}");
-					if(!file_exists(BASE_DIR."/tmp/".$app->name.".png")){
-						AppStartServer::log("sips --resampleHeightWidthMax 256 -s format png {$icon} --out ".BASE_DIR."/{$out}/{$app->name}.png");
-						exec("sips --resampleHeightWidthMax 256 -s format png {$icon} --out ".BASE_DIR."/{$out}/{$app->name}.png");
+					if(!file_exists(BASE_DIR."/tmp/".$icon_name.".png")){
+						AppStartServer::log("sips --resampleHeightWidthMax 256 -s format png {$icon} --out ".BASE_DIR."/{$out}/{$icon_name}.png");
+						exec("sips --resampleHeightWidthMax 256 -s format png {$icon} --out ".BASE_DIR."/{$out}/{$icon_name}.png");
 					}else{
 						AppStartServer::log("Icon {$icon_name} already exists, skipping");
 					}
-					$icon_file = @file_get_contents(BASE_DIR."/tmp/".$app->name.".png");
+					$icon_file = @file_get_contents(BASE_DIR."/tmp/".$icon_name.".png");
 					$this->apps[$i]->icon = ($icon != NULL) ? base64_encode($icon_file) : false;
 				}catch(Exception $e){
 					AppStartServer::log("UhOhUh something went wrong...\n{$e->getMessage()}");
