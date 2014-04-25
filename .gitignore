@@ -3,3 +3,4 @@
 /log/*
 net.kanedo.AppStart.plist
 interface
+/server/tmp/*
