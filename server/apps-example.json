@@ -1,0 +1,62 @@
+[
+	{
+		"name" : "Plex TV",
+		"file" : "\/Applications\/Plex Home Theater.app",
+		"cmd"  : "open",
+		"type" : "application"
+	},
+	{
+		"name" : "Chrome",
+		"file" : "\/Applications\/Google Chrome.app",
+		"cmd"  : "open",
+		"type" : "application" 
+	},
+	{
+		"name" : "Instacast",
+		"file" : "\/Applications\/Instacast.app",
+		"cmd"  : "open",
+		"type" : "application" 
+	},
+	{
+		"name" : "shutdown",
+		"file" : "\/Users\/kanedo\/shutdown-server",
+		"cmd"  : "open",
+		"type" : "script"
+	},
+	{
+		"name" : "iTunes",
+		"file" : "\/Applications\/iTunes.app",
+		"cmd"  : "open",
+		"type" : "application" 
+	},
+	{
+		"name" : "VLC",
+		"file" : "\/Applications\/VLC.app",
+		"cmd"  : "open",
+		"type" : "application" 
+	},
+	{
+		"name" : "Spotify",
+		"file" : "\/Applications\/Spotify.app",
+		"cmd"  : "open",
+		"type" : "application" 
+	},
+	{
+		"name" : "Safari",
+		"file" : "\/Applications\/Safari.app",
+		"cmd"  : "open",
+		"type" : "application" 
+	},
+	{
+		"name" : "Transmission",
+		"file" : "\/Applications\/Transmission.app",
+		"cmd"  : "open",
+		"type" : "application" 
+	},
+	{
+		"name" : "Plex-Server",
+		"file" : "\/Applications\/Plex Media Server.app",
+		"cmd"  : "open",
+		"type" : "application"
+	}
+]
